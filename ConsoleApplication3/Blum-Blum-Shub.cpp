@@ -53,15 +53,6 @@ bool Miller(ZZ p, int iteration) {
 	}
 	return true;
 }
-bool isPrime(ZZ n) {
-	if (n <= 1)
-		return 0;
-	for (int i = 2; i < n; i++)
-		if (n % i == 0)
-			return 0;
-
-	return 1;
-}
 void BBS(int z) {
 	ZZ n1, n2, s, x0, x1, i, p, q, x, n, max, min;
 	max = 1;
@@ -73,16 +64,17 @@ void BBS(int z) {
 		do{
 		do {
 			p = RandomBnd(max + 1);
-		} while (((p / 4 * 4 + 3) != p));
-	} while (Miller(p, 2) == 0);
+		} while (p % 4 != 3);
+	    } while (Miller(p, 10) == 0);
 
 	do {
 		do {
 			q = RandomBnd(max + 1);
-		} while ((q / 4 * 4 + 3) != q);
-	} while (Miller(q, 2) == 0);
+		} while (q % 4 != 3);
+	} while (Miller(q, 10) == 0);
 
 	} while (p == q);
+
 	cout << "Our P is:" << endl;
 	cout << p << "\n";
 	cout << "Our Q is:" << endl;
@@ -127,7 +119,6 @@ int main()
 	cout << "Please input the i: ";
 	cin >> i;
 	BBS(i);
-
 
 	return 0;
 }

@@ -79,7 +79,7 @@ ZZ nextPrime(ZZ max) {
 	ZZ p;
 	do {
 		p = RandomBnd(max + 1);
-	} while (Miller(p, 2) == 0);
+	} while (Miller(p, 10) == 0);
 	return p;
 }
 int jacobiSymbol(ZZ n, ZZ k) {
@@ -99,7 +99,6 @@ int jacobiSymbol(ZZ n, ZZ k) {
 			t = -t;
 		n %= k;
 	}
-
 	if (k == 1)
 		return t;
 	else
